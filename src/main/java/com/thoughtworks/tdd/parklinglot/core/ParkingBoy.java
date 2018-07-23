@@ -1,14 +1,12 @@
 package com.thoughtworks.tdd.parklinglot.core;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 public class ParkingBoy  {
     protected List<ParkingLot> parkingLots;
 
-    public ParkingBoy(ParkingLot... parkingLots) {
-        this.parkingLots = Arrays.asList(parkingLots);
+    public ParkingBoy(List<ParkingLot> parkingLotList){
+        this.parkingLots = parkingLotList;
     }
 
     public List<ParkingLot> getParkingLotList() {
@@ -43,6 +41,12 @@ public class ParkingBoy  {
         }
         return currentParkingLot.unPark(parkingTicket);
     }
+
+    public void addParkingLot(String name, int size) {
+        ParkingLot parkingLot = new ParkingLot(UUID.randomUUID().toString(),name,size);
+        this.getParkingLotList().add(parkingLot);
+    }
+
 
 
 }

@@ -7,6 +7,8 @@ import com.thoughtworks.tdd.parklinglot.shell.Router;
 import com.thoughtworks.tdd.parklinglot.shell.io.Request;
 import com.thoughtworks.tdd.parklinglot.shell.io.Response;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -34,7 +36,12 @@ public class Main {
     }
 
     private static Router initRouter(String currentPage, Request request) {
-        ParkingBoy boy = new ParkingBoy(new ParkingLot("1","东南",2), new ParkingLot("2","西南",2));
+        ParkingLot parkingLot1 = new ParkingLot("1","东南",2);
+        ParkingLot parkingLot2 = new ParkingLot("2","西南",4);
+        List<ParkingLot> parkingLotList = new ArrayList<>();
+        parkingLotList.add(parkingLot1);
+        parkingLotList.add(parkingLot2);
+        ParkingBoy boy = new ParkingBoy(parkingLotList);
         Response response = new Response();
 
         Router router = new Router(currentPage);
@@ -54,6 +61,9 @@ public class Main {
         router.registerRoute("main/2",new ManageMainController(request,response));
         router.registerRoute("main/2/*",new ErrorController(request,response));
         router.registerRoute("main/2/1",new ParkingLotsInfoController(request,response,boy));
+        router.registerRoute("main/2/2",new GotoAddParkinglotController(request,response));
+        router.registerRoute("main/2/2/*",new AddParkinglotController(request,response,boy));
+
         return router;
     }
 
