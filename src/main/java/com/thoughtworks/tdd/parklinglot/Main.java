@@ -49,6 +49,8 @@ public class Main {
         router.registerRoute("main/1/*",new ErrorController(request,response));
         router.registerRoute("main/1/1",new GotoParkingController(request,response,boy));
         router.registerRoute("main/1/1/*",new ParkingController(request,response,boy));
+        router.registerRoute("main/1/2",new GoToPickUpController(request,response,boy));
+        router.registerRoute("main/1/2/*", new PickUpController(request,response,boy));
 
 
 
