@@ -38,11 +38,19 @@ public class Main {
         Response response = new Response();
 
         Router router = new Router(currentPage);
-        router.registerRoute("main", new MainController(request, response, boy));
-        router.registerRoute("main/1", new GotoParkingController(request, response, boy));
-        router.registerRoute("main/2", new GoToPickUpController(request, response, boy));
-        router.registerRoute("main/1/*", new ParkingController(request, response, boy));
-        router.registerRoute("main/2/*", new PickUpController(request, response, boy));
+//        router.registerRoute("main", new MainController(request, response, boy));
+//        router.registerRoute("main/1", new GotoParkingController(request, response, boy));
+//        router.registerRoute("main/2", new GoToPickUpController(request, response, boy));
+//        router.registerRoute("main/1/*", new ParkingController(request, response, boy));
+//        router.registerRoute("main/2/*", new PickUpController(request, response, boy));
+        router.registerRoute("main", new MainController(request,response));
+        router.registerRoute("main/*",new ErrorController(request,response));
+        router.registerRoute("main/1",new ServerMainController(request,response));
+        router.registerRoute("main/1/*",new ErrorController(request,response));
+        router.registerRoute("main/1/1",new GotoParkingController(request,response,boy));
+        router.registerRoute("main/1/1/*",new ParkingController(request,response,boy));
+
+
 
         return router;
     }

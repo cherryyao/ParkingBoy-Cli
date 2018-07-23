@@ -49,7 +49,8 @@ public class Router {
     }
 
     private String translateRequestInput(Request request) {
-        if (Arrays.asList("1", "2").contains(request.getCommand())) {
+        if (Arrays.asList("1", "2").contains(request.getCommand())
+                || (request.getCommand().equals("3") && currentPath.contains("main/2"))) {
             return request.getCommand();
         } else {
             return "*";
