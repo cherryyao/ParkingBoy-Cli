@@ -11,6 +11,10 @@ public class ParkingBoy  {
         this.parkingLots = Arrays.asList(parkingLots);
     }
 
+    public List<ParkingLot> getParkingLotList() {
+        return parkingLots;
+    }
+
     public Receipt park(Car car) throws ParkingLotFullException {
 
         ParkingLot currentParkingLot = null;

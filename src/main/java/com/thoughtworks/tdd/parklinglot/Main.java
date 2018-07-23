@@ -34,7 +34,7 @@ public class Main {
     }
 
     private static Router initRouter(String currentPage, Request request) {
-        ParkingBoy boy = new ParkingBoy(new ParkingLot(2), new ParkingLot(2));
+        ParkingBoy boy = new ParkingBoy(new ParkingLot("1","东南",2), new ParkingLot("2","西南",2));
         Response response = new Response();
 
         Router router = new Router(currentPage);
@@ -51,9 +51,9 @@ public class Main {
         router.registerRoute("main/1/1/*",new ParkingController(request,response,boy));
         router.registerRoute("main/1/2",new GoToPickUpController(request,response,boy));
         router.registerRoute("main/1/2/*", new PickUpController(request,response,boy));
-
-
-
+        router.registerRoute("main/2",new ManageMainController(request,response));
+        router.registerRoute("main/2/*",new ErrorController(request,response));
+        router.registerRoute("main/2/1",new ParkingLotsInfoController(request,response,boy));
         return router;
     }
 
