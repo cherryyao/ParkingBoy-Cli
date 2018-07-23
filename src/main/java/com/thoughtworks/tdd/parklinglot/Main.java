@@ -36,8 +36,8 @@ public class Main {
     }
 
     private static Router initRouter(String currentPage, Request request) {
-        ParkingLot parkingLot1 = new ParkingLot("1","东南",2);
-        ParkingLot parkingLot2 = new ParkingLot("2","西南",4);
+        ParkingLot parkingLot1 = new ParkingLot("a","东南",2);
+        ParkingLot parkingLot2 = new ParkingLot("b","西南",4);
         List<ParkingLot> parkingLotList = new ArrayList<>();
         parkingLotList.add(parkingLot1);
         parkingLotList.add(parkingLot2);
@@ -63,7 +63,8 @@ public class Main {
         router.registerRoute("main/2/1",new ParkingLotsInfoController(request,response,boy));
         router.registerRoute("main/2/2",new GotoAddParkinglotController(request,response));
         router.registerRoute("main/2/2/*",new AddParkinglotController(request,response,boy));
-
+        router.registerRoute("main/2/3",new GotoDeleteParkinglotController(request,response));
+        router.registerRoute("main/2/3/*",new DeleteParkingLotController(request,response,boy));
         return router;
     }
 
